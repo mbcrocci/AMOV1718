@@ -82,9 +82,6 @@ public class King extends Piece {
         return Integer.MAX_VALUE;
     }
 
-    /**
-     * @return True if this king has moved already; false otherwise.
-     */
     public boolean hasMoved() {
         if(start == null)
             return false;

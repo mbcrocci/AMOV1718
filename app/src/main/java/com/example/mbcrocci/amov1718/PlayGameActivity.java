@@ -146,9 +146,9 @@ public class PlayGameActivity extends Activity {
 
                 square.setAdjustViewBounds(true);
                 square.setMinimumHeight(displayHeight / 8);
-                square.setMinimumWidth(20);
+                square.setMinimumWidth(displayWidth / 8);
                 square.setMaxHeight(displayHeight / 8);
-                square.setMaxWidth(20);
+                square.setMaxWidth(displayWidth / 8);
 
                 if (square.isWhite())
                     square.setBackgroundColor(Color.WHITE);

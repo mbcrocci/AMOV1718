@@ -18,18 +18,26 @@
         </activity>
         <activity
             android:name=".PlayGameActivity"
-            android:label="@string/title_activity_play_game" />
+            android:label="@string/title_activity_play_game"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".PlayAgainstAIActivity"
             android:label="@string/title_activity_play_against_ai"
-            android:parentActivityName=".PlayGameActivity">
+            android:parentActivityName=".PlayGameActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.mbcrocci.amov1718.PlayGameActivity" />
         </activity>
-        <activity android:name=".PlayAgainstPlayerLocalActivity" />
+        <activity android:name=".PlayAgainstPlayerLocalActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mbcrocci.amov1718.PlayGameActivity" />
+        </activity>
         <activity
             android:name=".GameHistoryActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_game_history"></activity>
     </application>
 

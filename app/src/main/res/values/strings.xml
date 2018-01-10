@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AMOV1718</string>
+    <string name="play_vs_ai">Play against AI</string>
+    <string name="play_vs_player_local">Play against another player locally</string>
+    <string name="play_vs_player_online">Play against another player online</string>
+    <string name="title_activity_play_game">PlayGameActivity</string>
 </resources>

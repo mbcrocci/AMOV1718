@@ -308,9 +308,10 @@ public class Game {
     }
 
     // Guarda o jogo num formato a poder ser jogado outravez
-    public Playback toPlayback(String title) {
+    /*public Playback toPlayback(String title) {
         return new Playback(moves, title);
     }
+    */
 
     // Devolve todas as jogadas feitas
     @Override

@@ -37,8 +37,15 @@ public class Pawn extends Piece {
     public ArrayList<Location> getAttackedLocations() {
         ArrayList<Location> locs = new ArrayList<Location>(2);
         Location loc = getLocation();
-        Location l1 = new Location(loc.getRank() + 1, loc.getFile() - 1),
-                l2 = new Location(l1.getRank(), loc.getFile() + 1);
+
+        Location l1, l2;
+        if (isWhite()) {
+            l1 = loc.getAdjacentLocation(Location.NORTHEAST);
+            l2 = loc.getAdjacentLocation(Location.NORTHWEST);
+        } else {
+            l1 = loc.getAdjacentLocation(Location.SOUTHEAST);
+            l2 = loc.getAdjacentLocation(Location.SOUTHWEST);
+        }
 
         if(getGrid().isValid(l1)) {
             locs.add(l1);
@@ -54,24 +61,12 @@ public class Pawn extends Piece {
         return 1;
     }
 
-    /**
-     * @return True if this pawn has already moved; false otherwise. If the
-     * piece has been captured then the result of this method is undefined.
-     */
     public boolean hasMoved() {
         if(start == null)
             return false;
         return !start.equals(getLocation());
     }
 
-    /**
-     * Promotes this pawn for reaching the eighth rank.
-     * @param p The piece to promote to. If this is set to null, the piece is
-     * assumed to be a queen.
-     * @throws IllegalArgumentException If the piece to promote to is illegal
-     * (must be a minor or major piece).
-     * @throws IllegalStateException If the pawn is not on its eighth rank.
-     */
     public void promote(Piece p) {
         if(getLocation().getRank() != (isWhite() ? 7 : 0))
             throw new IllegalStateException("Cannot promote when not on the eighth rank.");

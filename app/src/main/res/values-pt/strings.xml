@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AMOV1718</string>
+    <string name="play_vs_ai">Jogar contra computador.</string>
+    <string name="play_vs_player_local">Play contra jogador offline.</string>
+    <string name="play_vs_player_online">Jogar contra jogador online.</string>
+    <string name="play_vs_player_clock">Jogar contra jogar com relogio.</string>
+    <string name="title_activity_play_game">PlayGameActivity</string>
+    <string name="title_activity_play_against_ai">Jogar contra computador.</string>
+</resources>

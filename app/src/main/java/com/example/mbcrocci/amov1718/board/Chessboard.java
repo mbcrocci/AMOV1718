@@ -25,9 +25,6 @@ public class Chessboard implements Grid<Piece> {
         }
     }
 
-    /**
-     * @return A set containing all of the mappings in the chessboard.
-     */
     public Set<Entry<Location, Piece>> getEntrySet() {
         return map.entrySet();
     }
@@ -42,13 +39,6 @@ public class Chessboard implements Grid<Piece> {
         return inverted;
     }
 
-    /**
-     * Takes the board and converts it into a String "picture" for human
-     * consumption at a terminal.
-     * @param inverted True if this board is to be rendered from black's
-     * perspective; false if it is drawn normally from white's perspective.
-     * @return A String representing this board.
-     */
     @Override
     public String draw() {
         StringBuilder sb = new StringBuilder(200);
@@ -127,11 +117,6 @@ public class Chessboard implements Grid<Piece> {
         map.remove(loc);
     }
 
-    /**
-     * @return A human-viewable String of this board, printed from white's
-     * perspective.
-     * @see {@link Chessboard#draw(boolean)}
-     */
     @Override
     public String toString() {
         return draw();

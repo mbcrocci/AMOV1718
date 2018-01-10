@@ -163,6 +163,7 @@ public class Game {
             if(!p.canMove(dest))
                 throw new IllegalMoveException(p, dest);
             Move m = new Move(src, dest);
+
             if(isInCheck() && !escape_moves.contains(m)) {
                 System.out.println(m);
                 throw new InCheckException(escape_moves);
@@ -223,9 +224,7 @@ public class Game {
 
         if(inCheck) {
             escape_moves = getEscapeMoves();
-//			moves.append(escape_moves.isEmpty() ? '#' : '+');
-        }
-        else {
+        } else {
             escape_moves = null;
             updateAllowedMoves();
         }
@@ -356,10 +355,6 @@ public class Game {
 
     }
 
-    /**
-     * Sets up a brand new game of chess. Creates a new pieces and sets up the
-     * pieces on the grid.
-     */
     // Novo jogo de xadrez. Cria todas as pecas e coloca-as na grid
     private void defaultPosition() {
         pieces = new ArrayList<Piece>(32);
@@ -427,7 +422,7 @@ public class Game {
                     pieces.remove(captured);
                 updateControlledLocations();
                 if(!isInCheck())
-                    result.add(new Move(p.getLocation(), loc));
+                    result.add(new Move(prev, loc));
                 grid.put(prev, p);
                 if(captured != null) {
                     grid.put(loc, captured);

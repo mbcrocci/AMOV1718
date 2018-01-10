@@ -21,20 +21,18 @@ import java.util.ArrayList;
 
 public class PlayGameActivity extends Activity {
 
-    private Display display;
-    private int displayHeight, displayWidth;
+    protected Display display;
+    protected int displayHeight, displayWidth;
 
-    private Game game;
+    protected Game game;
 
-    private Square [][]squares = new Square[8][8];
-    private Square selectedSquare;
+    protected Square [][]squares = new Square[8][8];
+    protected Square selectedSquare;
 
-    private Location selectedLocation;
+    protected Location selectedLocation;
 
-    private LinearLayout linearLayout;
-    private TableLayout tableLayout;
-
-    //int x, y;
+    protected LinearLayout linearLayout;
+    protected TableLayout tableLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +51,7 @@ public class PlayGameActivity extends Activity {
         game = new Game(new Chessboard());
     }
 
-    private void makeBoard() {
+    protected void makeBoard() {
         linearLayout = (LinearLayout) findViewById(R.id.game_layout);
         linearLayout.removeAllViews();
         linearLayout.invalidate();
@@ -97,86 +95,9 @@ public class PlayGameActivity extends Activity {
             for (int c = 0; c < 8; c++) {
                 final int x = l, y = c;
                 Square square = squares[l][c];
+
                 // num metodo na classe nao estava a funcionar
-                square.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (selectedSquare != null) {
-                            if (squares[x][y] == selectedSquare) {
-                                if (squares[x][y].isWhite())
-                                    squares[x][y].setBackgroundColor(Color.WHITE);
-                                else
-                                    squares[x][y].setBackgroundColor(Color.GRAY);
-
-                                selectedSquare = null;
-                                return;
-                            } else {
-                                Location src = selectedLocation;
-                                Location dst = new Location(x, y);
-
-                                try {
-                                    boolean inCheck = game.move(src, dst);
-                                    if (inCheck)
-                                        Toast.makeText(getBaseContext(), "Check!", Toast.LENGTH_LONG)
-                                                .show();
-
-                                    renderBoard();
-
-                                } catch (IllegalMoveException e) {
-                                    StringBuilder strBuilder = new StringBuilder();
-
-                                    strBuilder.append(e.getPiece() + " cant move to " + e.getLocation());
-                                    strBuilder.append('\n');
-
-                                    ArrayList<Location> locs = e.getPiece().getMoves();
-
-                                    if (locs.isEmpty())
-                                        strBuilder.append("This piece cant move.");
-
-                                    else {
-                                        strBuilder.append(e.getPiece() + " can move to: ");
-                                        for (Location loc : e.getPiece().getMoves())
-                                            strBuilder.append(loc + " ");
-                                    }
-
-                                    Toast.makeText(getBaseContext(), strBuilder.toString(), Toast.LENGTH_LONG)
-                                            .show();
-                                    return;
-
-                                } finally {
-                                    if (selectedSquare.isWhite())
-                                        selectedSquare.setBackgroundColor(Color.WHITE);
-                                    else
-                                        selectedSquare.setBackgroundColor(Color.GRAY);
-
-                                    selectedSquare = null;
-                                    selectedLocation = null;
-                                }
-                            }
-                            // if (selectedSquare != null) {
-                        } else {
-                            Location loc = new Location(x, y);
-                            if (game.getGrid().get(loc) == null)
-                                return;
-
-                            Piece piece = game.getGrid().get(loc);
-
-                            if (piece.isWhite() != game.isWhitesTurn()) {
-                                Toast.makeText(
-                                        getBaseContext(),
-                                        "You can only move your pieces" + ((game.isWhitesTurn()) ? "whites" : "blacks") + " turn.",
-                                        Toast.LENGTH_SHORT
-                                ).show();
-                                return;
-                            }
-
-                            squares[x][y].select();
-                            selectedSquare = squares[x][y];
-                            selectedLocation = new Location(x,y);
-                            squares[x][y].setBackgroundColor(Color.RED);
-                        }
-                    }
-                });
+                square.setOnClickListener(newViewOnClickListeneter(x, y));
 
                 // TODO: separar isto para um metodo
                 // fila preta
@@ -250,7 +171,7 @@ public class PlayGameActivity extends Activity {
         return;
     }
 
-    private void makeBoardSquares() {
+    protected void makeBoardSquares() {
         for (int x = 7; x >= 0; x--) {
             for (int y = 0; y < 8; y++) {
 
@@ -266,7 +187,7 @@ public class PlayGameActivity extends Activity {
         }
     }
 
-    private void renderBoard() {
+    protected void renderBoard() {
         Chessboard chessboard = game.getGrid();
         for (int rank = 7; rank >= 0; rank--) {
             for (int file = 0; file < 8; file++) {
@@ -310,5 +231,14 @@ public class PlayGameActivity extends Activity {
                 }
             }
         }
+    }
+
+    protected View.OnClickListener newViewOnClickListeneter(final int x, final int y) {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        };
     }
 }

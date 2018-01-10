@@ -4,4 +4,5 @@
     <string name="play_vs_player_local">Play against another player locally</string>
     <string name="play_vs_player_online">Play against another player online</string>
     <string name="title_activity_play_game">PlayGameActivity</string>
+    <string name="title_activity_play_against_ai">PlayAgainstAIActivity</string>
 </resources>

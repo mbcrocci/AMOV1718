@@ -14,13 +14,13 @@ public class MainActivity extends Activity {
     }
 
     public void playAgainstAI(View view) {
-        Intent intent = new Intent(this, PlayGameActivity.class);
+        Intent intent = new Intent(this, PlayAgainstAIActivity.class);
         startActivity(intent);
     }
 
     public void playAgainstPlayerLocal(View view) {
-        //Intent intent = new Intent(this, PlayGame.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, PlayAgainstPlayerLocalActivity.class);
+        startActivity(intent);
     }
 
     public void playAgainstPlayerOnline(View view) {

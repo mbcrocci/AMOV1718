@@ -91,7 +91,15 @@ public class Move {
             return false;
 
         Move m = (Move) o;
-        return m.src.equals(src) && m.dest.equals(dest);
+        boolean srceq = src.equals(m.getSource());
+        boolean desteq = dest.equals(m.getDestination());
+
+        return srceq && desteq;
+    }
+
+    @Override
+    public int hashCode() {
+        return src.hashCode() + dest.hashCode();
     }
 
     public Location getDestination() {

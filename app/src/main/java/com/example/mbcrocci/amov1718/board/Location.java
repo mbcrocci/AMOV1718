@@ -30,6 +30,7 @@ public class Location {
         this.rank = str.charAt(1) - '1';
     }
 
+
     @Override
     public boolean equals(Object o) {
         if(o == null || !(o instanceof Location))

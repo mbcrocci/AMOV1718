@@ -18,7 +18,16 @@
         </activity>
         <activity
             android:name=".PlayGameActivity"
-            android:label="@string/title_activity_play_game"></activity>
+            android:label="@string/title_activity_play_game" />
+        <activity
+            android:name=".PlayAgainstAIActivity"
+            android:label="@string/title_activity_play_against_ai"
+            android:parentActivityName=".PlayGameActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.mbcrocci.amov1718.PlayGameActivity" />
+        </activity>
+        <activity android:name=".PlayAgainstPlayerLocalActivity" />
     </application>
 
 </manifest>

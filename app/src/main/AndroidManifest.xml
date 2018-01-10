@@ -28,6 +28,9 @@
                 android:value="com.example.mbcrocci.amov1718.PlayGameActivity" />
         </activity>
         <activity android:name=".PlayAgainstPlayerLocalActivity" />
+        <activity
+            android:name=".GameHistoryActivity"
+            android:label="@string/title_activity_game_history"></activity>
     </application>
 
 </manifest>

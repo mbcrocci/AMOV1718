@@ -27,4 +27,9 @@ public class MainActivity extends Activity {
         //Intent intent = new Intent(this, PlayGameOnline.class);
         //startActivity(intent);
     }
+
+    public void gameHistory(View view) {
+        Intent intent = new Intent(this, GameHistoryActivity.class);
+        startActivity(intent);
+    }
 }

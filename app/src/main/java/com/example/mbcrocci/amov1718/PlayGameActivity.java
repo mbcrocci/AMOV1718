@@ -72,7 +72,6 @@ public class PlayGameActivity extends Activity {
         );
         tableLayout.setStretchAllColumns(true);
         tableLayout.setOrientation(LinearLayout.VERTICAL);
-
         makeBoardSquares();
 
         // decrescente pq as filas mais altas (pretas) ficam em cima

@@ -1,5 +1,8 @@
 package com.example.mbcrocci.amov1718;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.mbcrocci.amov1718.board.Location;
+import com.example.mbcrocci.amov1718.game.RecordedGame;
 import com.example.mbcrocci.amov1718.move.IllegalMoveException;
 import com.example.mbcrocci.amov1718.pieces.Piece;
 
@@ -108,6 +112,28 @@ public class PlayAgainstAIActivity extends PlayGameActivity {
                     } catch (NoSuchElementException e) {
                         Toast.makeText(getBaseContext(), "The computer cant play.", Toast.LENGTH_SHORT).show();
                     }
+                }
+
+                if (game.isCheckmate()) {
+                    new AlertDialog.Builder(getBaseContext())
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("Checkmate")
+                            .setMessage((game.isWhitesTurn() ? "White" : "Black") + " player won!")
+                            .setPositiveButton("End Game",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            RecordedGame recordedGame = new RecordedGame(
+                                                    game.isWhitesTurn(),
+                                                    game.getMoves(),
+                                                    "vs ai");
+                                            recordedGame.saveToSharedPreferences(getApplicationContext());
+                                        }
+                                    }
+                            );
+
+                    Intent intent = new Intent(getBaseContext(), MainActivity.class);
+                    startActivity(intent);
                 }
             }
         };

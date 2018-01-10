@@ -1,5 +1,8 @@
 package com.example.mbcrocci.amov1718;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -7,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.mbcrocci.amov1718.board.Location;
+import com.example.mbcrocci.amov1718.game.RecordedGame;
 import com.example.mbcrocci.amov1718.move.IllegalMoveException;
 import com.example.mbcrocci.amov1718.pieces.Piece;
 
@@ -101,6 +105,32 @@ public class PlayAgainstPlayerLocalActivity extends PlayGameActivity {
                     selectedSquare = squares[x][y];
                     selectedLocation = new Location(x, y);
                     squares[x][y].setBackgroundColor(Color.RED);
+                }
+
+                if (game.isCheckmate()) {
+                    Toast.makeText(PlayAgainstPlayerLocalActivity.this, "CHECKMATE", Toast.LENGTH_LONG).show();
+                    new AlertDialog.Builder(PlayAgainstPlayerLocalActivity.this)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .setTitle("Checkmate")
+                            .setMessage((game.isWhitesTurn() ? "White" : "Black") + " player won!")
+                            .setPositiveButton("End Game",
+                                    new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialogInterface, int i) {
+                                            RecordedGame recordedGame = new RecordedGame(
+                                                    game.isWhitesTurn(),
+                                                    game.getMoves(),
+                                                    "vs ai");
+                                            recordedGame.saveToSharedPreferences(PlayAgainstPlayerLocalActivity.this);
+
+                                            Intent intent = new Intent(PlayAgainstPlayerLocalActivity.this, MainActivity.class);
+                                            startActivity(intent);
+                                        }
+                                    }
+                            ).show();
+
+
+
                 }
             }
         };

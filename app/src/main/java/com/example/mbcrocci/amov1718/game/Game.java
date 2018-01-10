@@ -65,6 +65,8 @@ public class Game {
         return grid;
     }
 
+    public String getMoves() { return moves.toString(); }
+
     // locs atacadas por uma peca preta
     // nao inclui pecas ocupadas por uma peca preta nao defendida por outra peca
     public HashSet<Location> getLocsControlledByBlack() {
